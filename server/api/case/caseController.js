@@ -30,13 +30,14 @@ exports.get = (req, res, next) => {
 };
 
 exports.getOne = (req, res, next) => {
-  var Ticket = req.ticket;
+  var ticket = req.ticket;
   res.json(ticket);
 };
 
 exports.put = (req, res, next) => {
   var ticket = req.ticket;
   var update = req.body;
+  console.log('put ', update);
 
   _.merge(ticket, update);
 
@@ -53,7 +54,7 @@ exports.post = (req, res, next) => {
   var newticket = req.body;
   Ticket.create(newticket).then(
     ticket => {
-      res.json({ case_id: ticket.id });
+      res.json(ticket);
       // res.json(ticket);
     },
     err => {
@@ -68,6 +69,7 @@ exports.delete = (req, res, next) => {
     if (err) {
       next(err);
     } else {
+      console.log(removed);
       res.json(removed);
     }
   });

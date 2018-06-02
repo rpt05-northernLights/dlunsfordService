@@ -9,7 +9,7 @@ var CaseSchema = new Schema({
     type: String
   },
   user: { type: Schema.Types.ObjectId, ref: 'user' },
-  categories: [{ type: Schema.Types.ObjectId, ref: 'category' }]
+  type: [{ type: Schema.Types.ObjectId, ref: 'type' }]
 });
 
 module.exports = mongoose.model('case', CaseSchema);

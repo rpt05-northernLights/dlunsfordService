@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint server/**",
+    "test": "mocha server/spec.js",
     "dev": "nodemon index.js",
     "start": "node ./index.js"
   },
@@ -22,10 +23,18 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-jest": "^21.17.0",
     "express": "^4.16.3",
+    "jest": "^23.1.0",
     "lodash": "^4.17.10",
     "method-override": "^2.3.10",
     "mongoose": "^5.1.3",
-    "morgan": "^1.9.0"
+    "morgan": "^1.9.0",
+    "supertest-as-promised": "^4.0.2"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "supertest": "^3.1.0"
   }
 }
