@@ -1,5 +1,5 @@
 var Type = require('./typeModel');
-var _ = required('lodash');
+var _ = require('lodash');
 
 exports.params = (req, res, next, id) => {
   Type.findById(id).then(
