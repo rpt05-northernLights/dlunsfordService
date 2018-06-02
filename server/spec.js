@@ -2,10 +2,6 @@ var app = require('./server');
 var request = require('supertest');
 var expect = require('chai').expect;
 
-// TODO: make tests for the other CRUD routes
-// DELETE, UPDATE, PUT, GET ONE
-// to run the test type mocha server/specs.js
-
 describe('Cases get should return array', function() {
   // GET ALL
   it('should get all Cases', function(done) {
