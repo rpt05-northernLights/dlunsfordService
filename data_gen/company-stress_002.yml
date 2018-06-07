@@ -1,0 +1,61 @@
+config:
+  target: "http://localhost:8080"
+  processor: "./my-functions.js"
+  phases:
+    - duration: 10
+      arrivalRate: 1
+      ##arrivalCount: 20
+scenarios:
+  - name: "Register a user"
+    flow:
+      # call generateRandomData() to create the name, email, and password variables
+      - function: "generateRandomData"
+      - loop:
+        - post:
+            url: "/api/accounts"
+            capture:
+              json: "$.company_id"
+              as: "companyid"
+            json:
+              companyname: "{{ companyName }}"
+        - log: "= Sent a request to /accounts with {{ companyName }}"
+      #####
+        - loop:
+          - think: 15
+          - post:
+              url: "/api/users"
+              capture:
+                json: "$.author"
+                as: "username"
+              json:
+                username: "{{ name }}"
+                email: "{{ email }}"
+                job_type: "{{ jobType }}"
+                job_title: "{{ jobTitle }}"
+                phone: "{{ phoneNumber }}"
+                company_id: "{{companyid}}"
+          - log: "== Sent a request to /users with {{ name }}"
+
+          - post:
+              url: "/api/tickets"
+              capture:
+                json: "$.case_id"
+                as: "caseid"
+              json:
+                author: "{{ username }}"
+                title: "{{ title }}"
+                text: "{{ text }}"
+          - log: "=== rec the ticket id of {{ caseid }}"      
+          - loop:
+            - think: 5
+            - post:
+                url: "/api/messages"
+                json:
+                  case_id: "{{ caseid }}"
+                  message: "{{ messageText }}"
+                  date_time: "{{ messageDate }}"
+            - log: "==== Sent a request to /messages with {{ username }}"
+            count: 300
+          count: 122
+        count: 30
+      
