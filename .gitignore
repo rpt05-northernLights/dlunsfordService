@@ -61,6 +61,6 @@ typings/
 .next
 
 # my configs
-config
+config/
 config.js
 development.js
