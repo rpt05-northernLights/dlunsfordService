@@ -1,0 +1,16 @@
+config:
+  target: "http://localhost:8080"
+  processor: "./my-functions.js"
+  phases:
+    - duration: 1
+      arrivalRate: 100000
+scenarios:
+  - name: "Register a user"
+    flow:
+      # call generateRandomData() to create the name, email, and password variables
+      - function: "generateRandomData"
+      - post:
+          url: "/api/users"
+          json:
+            username: "{{ name }}"
+      - log: "Sent a request to /users with {{ name }}"
