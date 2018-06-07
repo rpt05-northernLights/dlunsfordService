@@ -1,0 +1,64 @@
+config:
+  target: "http://localhost:8080"
+  processor: "./my-functions.js"
+  phases:
+    - duration: 10
+      arrivalRate: 1
+
+scenarios:
+  - name: "Adding a full entry to the database"
+    flow:
+      - function: "generateRandomData"
+
+      - post:
+        url: "/api/accounts"
+        capture:
+          json: "$.company_id"
+          as: "companyid"
+        json:
+          companyname: "{{ companyName }}"
+      - log: "Sent a request /account with {{ companyName }}"
+
+      # loop through the following
+
+      - loop:
+        - post:
+          url: "/api/users"
+          capture:
+            json: "$.author"
+            as: "companyid"
+          json:
+            username: "{{ userName }}"
+            email: "{{ email }}"
+            job_type: "{{ jobType }}"
+            job_title: "{{ jobTitle }}"
+            phone: "{{ phone }}"
+            company_id: "{{ companyId }}"
+        - log: "Sent a request /users with {{ userName }}"
+
+        - post:
+          url: "/api/tickets"
+          capture:
+            json: "$.case_id"
+            as: "caseid"
+          json:
+            author: "{{ username }}"
+            title: "{{ title }}"
+            text: "{{ text }}"
+
+        - loop:
+          -post:
+            url: "/api/messages"
+            json:
+              case_id: "{{ caseid }}"
+              messages: "{{ messageText }}"
+              date_time: "{{ messsagDate }}"
+          count: 4
+        - log: "Sent a request /messages with {{ caseid }}"
+        count: 3
+    
+      - log: "Created an entry"
+
+
+      
+
