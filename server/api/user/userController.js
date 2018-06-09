@@ -18,14 +18,16 @@ exports.params = function(req, res, next, id) {
 };
 
 exports.get = function(req, res, next) {
-  User.find({}).then(
-    function(users) {
-      res.json(users);
-    },
-    function(err) {
-      next(err);
-    }
-  );
+  User.find({})
+    .limit(1000)
+    .then(
+      function(users) {
+        res.json(users);
+      },
+      function(err) {
+        next(err);
+      }
+    );
 };
 
 exports.getOne = function(req, res, next) {
