@@ -18,14 +18,16 @@ exports.params = function(req, res, next, id) {
 };
 
 exports.get = function(req, res, next) {
-  Company.find({}).then(
-    function(companyies) {
-      res.json(companyies);
-    },
-    function(err) {
-      next(err);
-    }
-  );
+  Company.find({})
+    .limit(5000)
+    .then(
+      function(companyies) {
+        res.json(companyies);
+      },
+      function(err) {
+        next(err);
+      }
+    );
 };
 
 exports.getOne = function(req, res, next) {

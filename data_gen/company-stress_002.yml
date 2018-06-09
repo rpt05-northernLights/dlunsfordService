@@ -2,8 +2,8 @@ config:
   target: "http://localhost:8080"
   processor: "./my-functions.js"
   phases:
-    - duration: 10
-      arrivalRate: 1
+    - duration: 1000
+      arrivalRate: 3
       ##arrivalCount: 20
 scenarios:
   - name: "Register a user"

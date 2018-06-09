@@ -64,3 +64,4 @@ typings/
 config/
 config.js
 development.js
+/data_gen

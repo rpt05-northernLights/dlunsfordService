@@ -4,8 +4,8 @@ var Schema = mongoose.Schema;
 var UserSchema = new Schema({
   username: {
     type: String,
-    required: true,
-    unique: true
+    required: true
+    // unique: true
   },
   phone: {
     type: String
