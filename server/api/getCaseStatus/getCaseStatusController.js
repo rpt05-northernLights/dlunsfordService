@@ -1,6 +1,6 @@
 const Ticket = require('./../ticket/ticketModel');
 const _ = require('lodash');
-
+//
 exports.params = function(req, res, next, id) {
   Ticket.findById(id)
     .select('title')
