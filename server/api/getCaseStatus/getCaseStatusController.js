@@ -1,14 +1,28 @@
-const Ticket = require('./ticketModel');
+const Ticket = require('./../ticket/ticketModel');
 const _ = require('lodash');
 
 exports.params = function(req, res, next, id) {
   Ticket.findById(id)
-    // .select('title')
+    .select('title')
     .populate('message')
     .exec()
     .then(function(ticket) {
       if (!ticket) {
         next(new Error('No ticket with that id'));
+      } else {
+        req.ticket = ticket;
+        next();
+      }
+    });
+};
+
+exports.getCaseStatus = function(req, res, next, id) {
+  Ticket.findById(id)
+    .select('title - _id')
+    .exec()
+    .then(function(ticket) {
+      if (!ticket) {
+        next(new Error('No ticket with that id ffff'));
       } else {
         req.ticket = ticket;
         next();

@@ -15,4 +15,6 @@ router
   .put(controller.put)
   .delete(controller.delete);
 
+// custom routes
+
 module.exports = router;
