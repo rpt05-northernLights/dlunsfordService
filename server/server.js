@@ -3,7 +3,7 @@ var app = express();
 var api = require('./api/api');
 var config = require('./config/config');
 
-require('mongoose').connect('mongodb://localhost/dlunsfordService');
+require('mongoose').connect('mongodb://localhost/dlunsfordServiceDev');
 
 // if (config.seed) {
 //   require('./util/seed');
