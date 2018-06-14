@@ -2,7 +2,7 @@ const Ticket = require('./../ticket/ticketModel');
 const _ = require('lodash');
 
 exports.getAllClosedCases = (req, res, next) => {
-  Ticket.find({ status: 'normal' }, (err, ticket) => {
+  Ticket.find({ status: 'closed' }, (err, ticket) => {
     if (err) {
       res.send('no good', err);
     }
