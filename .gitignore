@@ -64,4 +64,6 @@ typings/
 config/
 config.js
 development.js
-/data_gen
+data_gen/
+
+scratchpad.js
