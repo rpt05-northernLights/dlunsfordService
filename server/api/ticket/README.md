@@ -3,12 +3,8 @@ The ticket APIs
 
 <details>
   <summary>getAllTickets</summary>
-```json
-    {
-      title: 'text',
-      text: 'text is here',
-      date: 'date'
-    }
+``` ts
+  let Hello : string = 'World';
 ```    
   </details>
 
