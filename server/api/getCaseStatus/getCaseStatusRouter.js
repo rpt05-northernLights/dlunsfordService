@@ -5,6 +5,4 @@ const controller = require('./getCaseStatusController');
 router.param('id', controller.params);
 router.route('/:id').get(controller.getOne);
 
-// custom routes
-
 module.exports = router;

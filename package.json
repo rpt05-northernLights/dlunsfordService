@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint server/**",
-    "test": "mocha server/api/case/caseController.test.js",
+    "test": "mocha server/spec.js",
     "dev": "nodemon index.js",
     "start": "node ./index.js"
   },
