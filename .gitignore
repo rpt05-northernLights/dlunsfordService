@@ -61,10 +61,10 @@ typings/
 .next
 
 # my configs
-config/
+config/.
 config.js
 development.js
 data_gen/
-data/.
+data/
 
 scratchpad.js
